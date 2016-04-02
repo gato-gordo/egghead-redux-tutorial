@@ -7,12 +7,16 @@
 </head>
 <body>
     <div id="content">
-
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.3.1/redux.min.js
 ">
     </script>
-    <script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.0-rc.2/react.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.0-rc.2/react-dom.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script type="text/babel">
         const counter = function(state, action ){
             if(state === undefined) return 0;
             switch(action.type){
@@ -23,24 +27,31 @@
                 default:
                     return state;
             }
-
         }
+
         const { createStore } = Redux;
         const store = createStore(counter);
-
-        const render = () => {
-            document.getElementById('content').innerText = store.getState()
+        const Counter = ({state, increment, decrement}) => {
+                return (
+                    <div>
+                        <h1>{state}</h1>
+                        <button onClick={increment}>+</button>
+                        <button onClick={decrement}>-</button>
+                    </div>
+                );
         }
-
+        const render = () => {
+            ReactDOM.render(
+                <Counter
+                    state={store.getState()}
+                    increment={() => { store.dispatch({type: 'INCREMENT'}) }}
+                    decrement={() => { store.dispatch({type: 'DECREMENT'}) }}
+                />,
+                document.getElementById('content')
+            );
+        }
         store.subscribe(render);
-
         render();
-        
-        document.addEventListener('click', () => {
-            store.dispatch({
-                type: 'INCREMENT'
-            })
-        });
     </script>
 </body>
 </html>
