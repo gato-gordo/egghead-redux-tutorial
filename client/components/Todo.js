@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class Todo extends Component{
 	handleClick(){
-		console.log('click');
 		this.props.removeTodo(this.props.id);
 	}
 	render(){

@@ -17,12 +17,16 @@ const filter = () => {
 	return state.getState().filter;
 }
 
+let idNum = 0;
+
 const addTodo = (text) => {
 	state.dispatch({
 		type: 'ADD_TODO',
-		text: text
+		text: text,
+		id: ++idNum
 	});
 }
+
 
 const removeTodo = (id) => {
 	state.dispatch({
