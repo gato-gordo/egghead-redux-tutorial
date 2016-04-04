@@ -35,13 +35,21 @@ const removeTodo = (id) => {
 	});
 }
 
+const toggleTodo = (id) => {
+	state.dispatch({
+		type: 'TOGGLE_TODO',
+		id: id
+	});
+}
+
 const render = () => {
     ReactDOM.render(
         <Todos 
-        	list={ list() }
-        	filter={ filter() }
-        	addTodo={ addTodo }
-        	removeTodo={ removeTodo }
+        	list=       { list()     }
+        	filter=     { filter()   }
+        	addTodo=    { addTodo 	 }
+        	removeTodo= { removeTodo }
+			toggleTodo= { toggleTodo }
         />,
         document.getElementById('content')
     );

@@ -25,6 +25,7 @@ class Todos extends Component {
 	            <h1>Redux ToDos</h1>
 	            <TodoList 
 	            	removeTodo={this.props.removeTodo}
+					toggleTodo={this.props.toggleTodo}
 	            	list={this.props.list} 
 	            />
 	            <input 
